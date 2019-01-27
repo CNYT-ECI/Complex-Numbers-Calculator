@@ -34,4 +34,38 @@ class ComplexCalculatorTest {
     void itShouldReturnTheProductOfTwoComplexNumbers() {
         assertEquals(new Complex(14, 3), ComplexCalculator.product(a, b));
     }
+
+
+
+    @org.junit.jupiter.api.Test
+    void itShouldAddTwoVectors() {
+        //TODO
+    }
+
+    @org.junit.jupiter.api.Test
+    void itShouldntAddDifferentSizeVectors() {
+        //TODO
+    }
+
+
+    @org.junit.jupiter.api.Test
+    void itShouldSubstractTwoVectors() {
+        //TODO
+    }
+
+    @org.junit.jupiter.api.Test
+    void itShouldntSubstractDifferentSizeVectors() {
+        //TODO
+    }
+
+
+    @org.junit.jupiter.api.Test
+    void itShouldCalculateTheInverseVector() {
+        //TODO
+    }
+
+    @org.junit.jupiter.api.Test
+    void itShouldCalculateScalarMultiplication() {
+        //TODO
+    }
 }
