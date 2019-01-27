@@ -1,6 +1,8 @@
 package calculator.cnyt.co.edu.escuelaing.services;
 
 import calculator.cnyt.co.edu.escuelaing.entities.Complex;
+import calculator.cnyt.co.edu.escuelaing.entities.ComplexMatrix;
+import calculator.cnyt.co.edu.escuelaing.entities.ComplexVector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,6 +118,65 @@ public class ComplexCalculator {
 
 
 
+
+    public static List<List<Complex>> matrixTranspose(List<List<Complex>> matrix) throws ComplexException {
+        if (!isValid(matrix)) throw new ComplexException("The matrix is invalid");
+        List<List<Complex>> resultMatrix = new ArrayList<>();
+        for(int i = 0; i < matrix.size(); i++){
+            resultMatrix.add(new ArrayList<>());
+            for(int j = 0; j < matrix.get(i).size(); i++){
+                resultMatrix.get(i).add(matrix.get(j).get(i));
+            }
+        }
+        return resultMatrix;
+    }
+
+
+    public static List<List<Complex>> matrixConjugate(List<List<Complex>> matrix) throws ComplexException {
+        if (!isValid(matrix)) throw new ComplexException("The matrix is invalid");
+        List<List<Complex>> resultMatrix = new ArrayList<>();
+        for(List<Complex> vector: matrix){
+            resultMatrix.add(ComplexCalculator.vectorConjugate(vector));
+        }
+        return resultMatrix;
+    }
+
+    public static List<Complex> vectorConjugate(List<Complex> vector) {
+        List<Complex> resultVector = new ArrayList<>();
+        for(Complex c: vector){
+            resultVector.add(c.getConjugated());
+        }
+        return resultVector;
+    }
+
+    public static List<List<Complex>> adjoint(List<List<Complex>> matrix) throws ComplexException {
+        return ComplexCalculator.matrixTranspose(ComplexCalculator.matrixConjugate(matrix));
+    }
+
+    /*public static ComplexMatrix matrixMultiplication(ComplexMatrix firstMatrix, ComplexMatrix secondMatrix) throws ComplexException {
+        if(firstMatrix.getColumnsNumber() != secondMatrix.getRowsNumber()) throw new ComplexException("Invalid operation");
+        ComplexMatrix resultMatrix = new ComplexMatrix();
+        for(int i = 0; i < firstMatrix.getRowsNumber(); i++){
+            resultMatrix.addElement(new ComplexVector());
+            for(int j = 0; j < secondMatrix.getColumnsNumber(); i++){
+                resultMatrix.getElement(i).addElement(ComplexCalculator.addAndMultiply(firstMatrix.getElement(i), secondMatrix.getTranspose().getElement(i)));
+            }
+
+        }
+        return resultMatrix;
+    }
+
+    private static Complex addAndMultiply(ComplexVector firstVector, ComplexVector secondVector) {
+        Complex result = new Complex(0,0);
+        ComplexVector multiplicationVector = new ComplexVector();
+        for(int i = 0; i < firstVector.size(); i++){
+            multiplicationVector.addElement(ComplexCalculator.product(firstVector.getElement(i), secondVector.getElement(i)));
+        }
+        for(int k = 0; k < multiplicationVector.size(); k++){
+            result = ComplexCalculator.add(result, multiplicationVector.getElement(k));
+        }
+        return result;
+    }*/
 
 
 }

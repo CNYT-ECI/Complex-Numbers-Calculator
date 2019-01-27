@@ -58,5 +58,8 @@ public class Complex {
         return isEqual;
     }
 
+    public Complex getInverse() {
+        return new Complex(-a, -b);
+    }
 }
 
