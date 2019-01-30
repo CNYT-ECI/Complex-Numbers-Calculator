@@ -2,11 +2,12 @@ package calculator.cnyt.co.edu.escuelaing.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ComplexMatrix {
     private List<ComplexVector> elements;
 
-    public ComplexMatrix(){
+    public ComplexMatrix() {
         elements = new ArrayList<>();
     }
 
@@ -22,35 +23,48 @@ public class ComplexMatrix {
         this.elements = elements;
     }
 
-    public ComplexVector getElement(int index){
+    public ComplexVector get(int index) {
         return this.elements.get(index);
     }
 
-    public void addElement(ComplexVector element){
+    public void add(ComplexVector element) {
         this.elements.add(element);
     }
 
-    public int getColumnsNumber() {
-        if(this.elements.size() > 0){
-            return getElement(0).size();
-        }
-        else{
+    private int getColumnsNumber() {
+        if (this.elements.size() > 0) {
+            return get(0).size();
+        } else {
             return 0;
         }
     }
 
-    public int getRowsNumber(){
-        return this.elements.size();
+    public Size size() {
+        return new Size(elements.size(), getColumnsNumber());
     }
 
-    public ComplexMatrix getTranspose() {
-        ComplexMatrix result = new ComplexMatrix();
-        for(int i = 0; i < getColumnsNumber(); i++){
-            result.addElement(new ComplexVector());
-            for(int j = 0; j < getRowsNumber(); j++){
-                result.getElement(i).addElement(getElement(j).getElement(i));
+    public boolean isValid() {
+        boolean isValid = true;
+        if (this.size().getRows() > 0) {
+            int firsVectorSize = this.get(0).size();
+            for (int i = 1; i < this.size().getRows() && isValid; i++) {
+                if (this.get(i).size() != firsVectorSize) {
+                    isValid = false;
+                }
             }
         }
-        return result;
+        return isValid;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        ComplexMatrix that = (ComplexMatrix) o;
+        return Objects.equals(elements, that.elements);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(elements);
     }
 }

@@ -10,46 +10,71 @@ import java.util.List;
 public class ComplexCalculator {
 
     public static Complex add(Complex first, Complex second) {
-        Complex result = new Complex(first.getA() + second.getA(), first.getB() + second.getB());
-        return result;
+        return new Complex(first.getA() + second.getA(), first.getB() + second.getB());
     }
 
-    public static Complex substract(Complex first, Complex second) {
-        Complex result = new Complex(first.getA() - second.getA(), first.getB() - second.getB());
-        return result;
-    }
-
-    public static Complex division(Complex first, Complex second) {
-        double firstResult = (first.getA() * second.getA() + first.getB() * second.getB()) / (Math.pow(second.getA(), 2) + (Math.pow(second.getB(), 2)));
-        double secondResult = (second.getA() * first.getB() - first.getA() * second.getB()) / (Math.pow(second.getA(), 2) + (Math.pow(second.getB(), 2)));
-        Complex result = new Complex(firstResult, secondResult);
-        return result;
-    }
-
-    public static Complex product(Complex first, Complex second) {
-        Complex result = new Complex(first.getA() * second.getA() - first.getB() * second.getB(), first.getA() * second.getB() + first.getB() * second.getA());
-        return result;
-    }
-
-
-    public static List<Complex> addVectors(List<Complex> first, List<Complex> second) throws ComplexException {
-        if (first.size() != second.size()) throw new ComplexException("This operation is invalid");
-        List<Complex> resultVector = new ArrayList<>();
+    public static ComplexVector add(ComplexVector first, ComplexVector second) throws ComplexException {
+        if (first.size() != second.size()) throw new ComplexException(ComplexException.INVALID_OPERATION);
+        ComplexVector resultVector = new ComplexVector();
         for (int i = 0; i < first.size(); i++) {
             resultVector.add(ComplexCalculator.add(first.get(i), second.get(i)));
         }
         return resultVector;
     }
 
+    public static ComplexMatrix add(ComplexMatrix first, ComplexMatrix second) throws ComplexException {
+        if(!(first.isValid() && second.isValid())) throw new ComplexException(ComplexException.INVALID_MATRIX);
+        if (!(first.size().equals(second.size()))) throw new ComplexException(ComplexException.INVALID_OPERATION);
+        ComplexMatrix resultMatrix = new ComplexMatrix();
+        for (int i = 0; i < first.size().getRows(); i++) {
+            resultMatrix.add(ComplexCalculator.add(first.get(i), second.get(i)));
+        }
+        return resultMatrix;
+    }
 
-    public static List<Complex> substractVectors(List<Complex> first, List<Complex> second) throws ComplexException {
-        if (first.size() != second.size()) throw new ComplexException("This operation is invalid");
-        List<Complex> resultVector = new ArrayList<>();
+
+    public static Complex substract(Complex first, Complex second) {
+        return new Complex(first.getA() - second.getA(), first.getB() - second.getB());
+    }
+
+    public static ComplexVector substract(ComplexVector first, ComplexVector second) throws ComplexException {
+        if (first.size() != second.size()) throw new ComplexException(ComplexException.INVALID_OPERATION);
+        ComplexVector resultVector = new ComplexVector();
         for (int i = 0; i < first.size(); i++) {
             resultVector.add(ComplexCalculator.substract(first.get(i), second.get(i)));
         }
         return resultVector;
     }
+
+    public static ComplexMatrix substract(ComplexMatrix first, ComplexMatrix second) throws ComplexException {
+        if(!(first.isValid() && second.isValid())) throw new ComplexException(ComplexException.INVALID_MATRIX);
+        if (!(first.size().equals(second.size()))) throw new ComplexException(ComplexException.INVALID_OPERATION);
+        ComplexMatrix resultMatrix = new ComplexMatrix();
+        for (int i = 0; i < first.size().getRows(); i++) {
+            resultMatrix.add(ComplexCalculator.substract(first.get(i), second.get(i)));
+        }
+        return resultMatrix;
+    }
+
+
+    public static Complex divide(Complex first, Complex second) throws ComplexException{
+        if(second.getA() == 0 && second.getB() == 0) throw new ComplexException(ComplexException.DIVIDE_BY_ZERO);
+        double firstResult = (first.getA() * second.getA() + first.getB() * second.getB()) / (Math.pow(second.getA(), 2) + (Math.pow(second.getB(), 2)));
+        double secondResult = (second.getA() * first.getB() - first.getA() * second.getB()) / (Math.pow(second.getA(), 2) + (Math.pow(second.getB(), 2)));
+        return new Complex(firstResult, secondResult);
+    }
+
+
+    public static Complex product(Complex first, Complex second) {
+        return new Complex(first.getA() * second.getA() - first.getB() * second.getB(), first.getA() * second.getB() + first.getB() * second.getA());
+    }
+
+    
+
+
+
+/*
+
 
     public static List<Complex> inverseVector(List<Complex> vector) {
         List<Complex> resultVector = new ArrayList<>();
@@ -67,20 +92,13 @@ public class ComplexCalculator {
         return resultVector;
     }
 
-    public static List<List<Complex>> addMatrices(List<List<Complex>> firstMatrix, List<List<Complex>> secondMatrix) throws ComplexException {
-        if (!isValid(firstMatrix)) throw new ComplexException("The matrix is invalid");
-        List<List<Complex>> resultMatrix = new ArrayList<>();
-        for (int i = 0; i < firstMatrix.size(); i++) {
-            resultMatrix.add(ComplexCalculator.addVectors(firstMatrix.get(i), secondMatrix.get(i)));
-        }
-        return resultMatrix;
-    }
 
-    private static boolean isValid(List<List<Complex>> matrix) {
+
+    private static boolean isValid(ComplexMatrix matrix) {
         boolean isValid = true;
-        if (matrix.size() > 0) {
+        if (matrix.size().getRows() > 0) {
             int firsVectorSize = matrix.get(0).size();
-            for (int i = 1; i < matrix.size() && isValid; i++) {
+            for (int i = 1; i < matrix.size().getRows() && isValid; i++) {
                 if (matrix.get(i).size() != firsVectorSize) {
                     isValid = false;
                 }
@@ -152,7 +170,7 @@ public class ComplexCalculator {
     public static List<List<Complex>> adjoint(List<List<Complex>> matrix) throws ComplexException {
         return ComplexCalculator.matrixTranspose(ComplexCalculator.matrixConjugate(matrix));
     }
-
+*/
     /*public static ComplexMatrix matrixMultiplication(ComplexMatrix firstMatrix, ComplexMatrix secondMatrix) throws ComplexException {
         if(firstMatrix.getColumnsNumber() != secondMatrix.getRowsNumber()) throw new ComplexException("Invalid operation");
         ComplexMatrix resultMatrix = new ComplexMatrix();
