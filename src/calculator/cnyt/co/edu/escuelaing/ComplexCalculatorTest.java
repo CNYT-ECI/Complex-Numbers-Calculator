@@ -227,6 +227,26 @@ class ComplexCalculatorTest {
         }
     }
 
+    @org.junit.jupiter.api.Test
+    void itShouldCalculateTheProductOfTwoComplexNumbers() {
+        Complex a = new Complex(2, 3);
+        Complex b = new Complex(-3, 5);
+        assertEquals(new Complex (-21, 1),ComplexCalculator.product(a, b));
+    }
+
+    @org.junit.jupiter.api.Test
+    void itShouldCalculateTheInnerProductOfTwoVectors() {
+        Complex b = new Complex(4, 5);
+        Complex d = new Complex(1, 2);
+
+        Complex f = new Complex(2, 3);
+        Complex g = new Complex(4, 5);
+        ComplexVector x = new ComplexVector(Arrays.asList(b, d));
+        ComplexVector y = new ComplexVector(Arrays.asList(f, g));
+
+        assertEquals(new Complex (-21, 1),ComplexCalculator.innerProduct(x, y));
+    }
+
 
     /*@org.junit.jupiter.api.Test
     void itShouldSubstractTwoComplexNumbers() {

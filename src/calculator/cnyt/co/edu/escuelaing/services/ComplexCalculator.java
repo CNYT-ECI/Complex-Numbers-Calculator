@@ -69,6 +69,14 @@ public class ComplexCalculator {
         return new Complex(first.getA() * second.getA() - first.getB() * second.getB(), first.getA() * second.getB() + first.getB() * second.getA());
     }
 
+    public static Complex innerProduct(ComplexVector first, ComplexVector second) throws ComplexException {
+        if(first.size() != second.size()) throw new ComplexException(ComplexException.INVALID_OPERATION);
+        
+        for(int i = 0 ; i < first.size(); i++){
+
+        }
+    }
+
     
 
 
