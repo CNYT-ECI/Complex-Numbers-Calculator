@@ -64,13 +64,6 @@ public class ComplexVector {
 
 
     @Override
-    public String toString() {
-        return "ComplexVector{" +
-                "elements=" + elements +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o == null) return false;
         ComplexVector that = (ComplexVector) o;
@@ -80,5 +73,12 @@ public class ComplexVector {
     @Override
     public int hashCode() {
         return Objects.hash(elements);
+    }
+
+    @Override
+    public String toString() {
+        return "ComplexVector{" +
+                "elements=" + elements +
+                '}';
     }
 }

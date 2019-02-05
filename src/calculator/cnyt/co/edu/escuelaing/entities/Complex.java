@@ -1,5 +1,7 @@
 package calculator.cnyt.co.edu.escuelaing.entities;
 
+import java.util.Objects;
+
 public class Complex {
     private double a;
     private double b;
@@ -53,9 +55,17 @@ public class Complex {
 
     @Override
     public boolean equals(Object o) {
-        Complex other = (Complex) o;
-        boolean isEqual = (this.a == other.a && this.b == other.b)? true:false;
-        return isEqual;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Complex complex = (Complex) o;
+        return Double.compare(complex.a, a) == 0 &&
+                Double.compare(complex.b, b) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(a, b);
     }
 
     public Complex getInverse() {

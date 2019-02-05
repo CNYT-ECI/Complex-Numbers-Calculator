@@ -38,10 +38,16 @@ public class Size {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Size size = (Size) o;
         return rows == size.rows &&
                 columns == size.columns;
     }
 
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(rows, columns);
+    }
 }

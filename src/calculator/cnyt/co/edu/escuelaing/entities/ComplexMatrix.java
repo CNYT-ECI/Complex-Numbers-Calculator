@@ -56,15 +56,62 @@ public class ComplexMatrix {
         return isValid;
     }
 
+
+    public ComplexMatrix adjoint() {
+        return getConjugated().getTranspose();
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         ComplexMatrix that = (ComplexMatrix) o;
         return Objects.equals(elements, that.elements);
     }
 
     @Override
     public int hashCode() {
+
         return Objects.hash(elements);
+    }
+
+    public ComplexMatrix getTranspose() {
+        ComplexMatrix transpose = new ComplexMatrix();
+        for (int i = 0; i < this.size().getColumns(); i++) {
+            transpose.add(new ComplexVector());
+            for (int j = 0; j < this.size().getRows(); j++) {
+                transpose.get(i).add(this.get(j).get(i));
+            }
+        }
+        return transpose;
+    }
+
+    public ComplexMatrix getConjugated() {
+        ComplexMatrix conjugated = new ComplexMatrix();
+        for (int i = 0; i < size().getRows(); i++) {
+            conjugated.add(new ComplexVector());
+            for (int j = 0; j < size().getRows(); j++) {
+                conjugated.get(i).add(get(i).get(j).getConjugated());
+            }
+        }
+        return conjugated;
+    }
+
+    public ComplexMatrix getInverse() {
+        ComplexMatrix inverse = new ComplexMatrix();
+        for (int i = 0; i < size().getRows(); i++) {
+            inverse.add(new ComplexVector());
+            for (int j = 0; j < size().getRows(); j++) {
+                inverse.get(i).add(get(i).get(j).getInverse());
+            }
+        }
+        return inverse;
+    }
+
+    @Override
+    public String toString() {
+        return "ComplexMatrix{" +
+                "elements=" + elements +
+                '}';
     }
 }
