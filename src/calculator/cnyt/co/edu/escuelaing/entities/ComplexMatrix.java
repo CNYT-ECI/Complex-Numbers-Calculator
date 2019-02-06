@@ -1,6 +1,10 @@
 package calculator.cnyt.co.edu.escuelaing.entities;
 
+import calculator.cnyt.co.edu.escuelaing.services.ComplexCalculator;
+import calculator.cnyt.co.edu.escuelaing.services.ComplexException;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -107,6 +111,31 @@ public class ComplexMatrix {
         }
         return inverse;
     }
+
+    public boolean isHermitian(){
+        return this.equals(this.adjoint());
+    }
+
+    public boolean isUnitary() throws ComplexException {
+        return ComplexCalculator.crossProduct(this, adjoint()).equals(ComplexCalculator.crossProduct(adjoint(), this).equals(identity(size().getColumns())));
+    }
+
+    public static ComplexMatrix identity (int n){
+        ComplexMatrix result = new ComplexMatrix();
+        for(int i = 0; i < n; i++){
+            result.add(new ComplexVector());
+            for(int j = 0; j < n; j++){
+                if(i == j){
+                    result.get(i).add(new Complex(1, 0));
+                } else{
+                    result.get(i).add(new Complex(0, 0));
+                }
+
+            }
+        }
+        return result;
+    }
+
 
     @Override
     public String toString() {

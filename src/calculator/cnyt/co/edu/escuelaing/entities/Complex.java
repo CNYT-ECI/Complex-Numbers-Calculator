@@ -5,10 +5,18 @@ import java.util.Objects;
 public class Complex {
     private double a;
     private double b;
+    private boolean isSqrt;
 
     public Complex(double a, double b) {
         this.a = a;
         this.b = b;
+        isSqrt = false;
+    }
+
+    public Complex(double a, double b, boolean isSqrt){
+        this.a = a;
+        this.b = b;
+        isSqrt = isSqrt;
     }
 
     public Complex(PolarNumber polar){
@@ -46,6 +54,14 @@ public class Complex {
 
     public Complex getConjugated(){
         return new Complex(this.a, -1 * this.b);
+    }
+
+    public boolean isSqrt() {
+        return isSqrt;
+    }
+
+    public void setSqrt(boolean sqrt) {
+        isSqrt = sqrt;
     }
 
     @Override

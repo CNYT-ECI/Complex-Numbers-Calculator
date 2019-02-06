@@ -116,4 +116,26 @@ public class ComplexCalculator {
         return result;
     }
 
+    public static Complex vectorNorm (ComplexVector vector) throws ComplexException {
+        return new Complex(ComplexCalculator.innerProduct(vector, vector).getA(), ComplexCalculator.innerProduct(vector, vector).getB(), true);
+    }
+
+    public static Complex distance (ComplexVector first, ComplexVector second) throws ComplexException {
+        Complex operation = ComplexCalculator.innerProduct(ComplexCalculator.substract(first, second), ComplexCalculator.substract(first, second));
+        return new Complex(operation.getA(), operation.getB(), true);
+    }
+
+    public static ComplexMatrix tensorProduct (ComplexMatrix first, ComplexMatrix second){
+        ComplexMatrix result = new ComplexMatrix();
+        /*for(int i = 0; i < first.size().getRows(); i++){
+            for(int j = 0; j < second.size().getRows(); j++){
+                result.add(new ComplexVector());
+                result.get(i)
+            }
+        }*/
+        return result
+    }
+
+
+
 }
