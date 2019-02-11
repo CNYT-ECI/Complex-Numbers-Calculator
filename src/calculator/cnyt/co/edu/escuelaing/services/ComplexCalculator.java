@@ -3,6 +3,7 @@ package calculator.cnyt.co.edu.escuelaing.services;
 import calculator.cnyt.co.edu.escuelaing.entities.Complex;
 import calculator.cnyt.co.edu.escuelaing.entities.ComplexMatrix;
 import calculator.cnyt.co.edu.escuelaing.entities.ComplexVector;
+import calculator.cnyt.co.edu.escuelaing.entities.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +82,8 @@ public class ComplexCalculator {
 
 
     public static ComplexMatrix crossProduct(ComplexMatrix first, ComplexMatrix second) throws ComplexException {
+        if(first.size().getColumns() != second.size().getRows()) throw new ComplexException(ComplexException.INVALID_OPERATION);
+        if(!first.isValid() || !second.isValid()) throw new ComplexException(ComplexException.INVALID_MATRIX);
         ComplexMatrix secondTranspose = second.getTranspose();
         ComplexMatrix result = new ComplexMatrix();
         for (int i = 0; i < first.size().getRows(); i++) {
@@ -126,16 +129,32 @@ public class ComplexCalculator {
     }
 
     public static ComplexMatrix tensorProduct (ComplexMatrix first, ComplexMatrix second){
-        ComplexMatrix result = new ComplexMatrix();
-        /*for(int i = 0; i < first.size().getRows(); i++){
-            for(int j = 0; j < second.size().getRows(); j++){
-                result.add(new ComplexVector());
-                result.get(i)
+        ComplexMatrix solution = new ComplexMatrix();
+        for(int i = 0; i < first.size().getRows() * second.size().getRows(); i++){
+            solution.add(new ComplexVector());
+            for(int j = 0; j < first.size().getColumns() * second.size().getColumns(); j++){
+                solution.get(i).add(new Complex());
             }
-        }*/
-        return result
-    }
+        }
 
+        System.out.println(solution);
+
+
+        for(int i = 0; i < first.size().getRows(); i++){
+            for(int k = 0; k < second.size().getRows(); k++){
+                for(int j = 0; j < first.size().getColumns(); j++){
+                    for(int m = 0; m < second.size().getColumns(); m++){
+                        System.out.println("Position: " + (i+m+1) + ", " + (j+k+1) + " Value: " + first.get(i).get(j) + " * " + second.get(k).get(m));
+                        Complex a = ComplexCalculator.product(first.get(i).get(j), second.get(k).get(m));
+                        solution.get(i+m+1).get(j+k+1).setA(a.getA());
+                        solution.get(i+m+1).get(j+k+1).setB(a.getB());
+                    }
+                }
+            }
+        }
+
+        return solution;
+    }
 
 
 }

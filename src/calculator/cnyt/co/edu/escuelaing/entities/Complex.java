@@ -24,6 +24,10 @@ public class Complex {
         this.b = polar.getModulus() * Math.cos(polar.getPhase());
     }
 
+    public Complex() {
+
+    }
+
     public double getA() {
         return a;
     }

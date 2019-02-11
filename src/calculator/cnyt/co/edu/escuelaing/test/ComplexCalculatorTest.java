@@ -304,4 +304,75 @@ class ComplexCalculatorTest {
     void itShouldCalculateTheCrossProductOfTwoMatrices() throws ComplexException {
         assertEquals(new ComplexMatrix(Arrays.asList(new ComplexVector(Arrays.asList(new Complex(-14, 56), new Complex(-18, 76), new Complex(-22, 96))), new ComplexVector(Arrays.asList(new Complex(-22, 128), new Complex(-26, 180), new Complex(-30, 232))))), ComplexCalculator.crossProduct(z, z1));
     }
+
+    @Test
+    void itShouldntCalculateTheCrossProductWhenTheOperationIsInvalid() throws  ComplexException{
+        Complex b = new Complex(4, 5);
+        Complex d = new Complex(1, 2);
+
+        Complex f = new Complex(2, 3);
+        Complex g = new Complex(4, 5);
+        ComplexVector x = new ComplexVector(Arrays.asList(b, d));
+        ComplexVector y = new ComplexVector(Arrays.asList(f, f));
+
+
+        ComplexVector z1 = new ComplexVector(Arrays.asList(b, d));
+        ComplexVector z2 = new ComplexVector(Arrays.asList(b, d));
+        ComplexVector z3 = new ComplexVector(Arrays.asList(f, f));
+
+        try {
+            ComplexCalculator.crossProduct(new ComplexMatrix(Arrays.asList(x, y)), new ComplexMatrix(Arrays.asList(z1, z2, z3)));
+            fail(FAIL_MESSAGE);
+        } catch (ComplexException e) {
+            assertSame(e.getMessage(), ComplexException.INVALID_OPERATION);
+        }
+    }
+
+
+    @Test
+    void itShouldntCalculateTheCrossProductWhenTheMatricesAreInvalid() throws  ComplexException{
+        Complex b = new Complex(4, 5);
+        Complex d = new Complex(1, 2);
+
+        Complex f = new Complex(2, 3);
+        Complex g = new Complex(4, 5);
+        ComplexVector x = new ComplexVector(Arrays.asList(b, d));
+        ComplexVector y = new ComplexVector(Arrays.asList(f));
+
+
+        ComplexVector z1 = new ComplexVector(Arrays.asList(b, d));
+        ComplexVector z2 = new ComplexVector(Arrays.asList(b, d));
+        ComplexVector z3 = new ComplexVector(Arrays.asList(f, f));
+
+        try {
+            ComplexCalculator.crossProduct(new ComplexMatrix(Arrays.asList(x, y)), new ComplexMatrix(Arrays.asList(z1, z2)));
+            fail(FAIL_MESSAGE);
+        } catch (ComplexException e) {
+            assertSame(e.getMessage(), ComplexException.INVALID_MATRIX);
+        }
+    }
+
+
+    @Test
+    void itShouldGetTheVectorProductByScalar(){
+        
+    }
+
+    @Test
+    void itShouldGetTheMatrixProductByScalar(){}
+
+    @Test
+    void itShouldntGetTheMatrixProductByScalarIfTheMatrixIsInvalid(){}
+
+    @Test
+    void itShouldGetTheNormOfAVector(){}
+
+    @Test
+    void itShouldGetTheDistanceBetweenTwoVectors(){}
+
+    @Test
+    void itShouldGetTheTensorProductOfTwoMatrices(){}
+
+    @Test
+    void itShouldntGetTheTensorProductOfInvalidMatrices(){}
 }
