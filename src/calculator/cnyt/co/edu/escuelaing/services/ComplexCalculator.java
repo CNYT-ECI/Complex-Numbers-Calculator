@@ -106,7 +106,8 @@ public class ComplexCalculator {
         return result;
     }
 
-    public static ComplexMatrix productByScalar(Complex scalar, ComplexMatrix matrix) {
+    public static ComplexMatrix productByScalar(Complex scalar, ComplexMatrix matrix) throws ComplexException {
+        if(!matrix.isValid()) throw new ComplexException(ComplexException.INVALID_MATRIX);
         ComplexMatrix result = new ComplexMatrix();
 
         for (int i = 0; i < matrix.size().getRows(); i++) {

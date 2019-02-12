@@ -113,11 +113,29 @@ public class ComplexMatrix {
     }
 
     public boolean isHermitian(){
-        return this.equals(this.adjoint());
+        return convertToInt(this).equals(convertToInt(this.adjoint()));
     }
 
     public boolean isUnitary() throws ComplexException {
-        return ComplexCalculator.crossProduct(this, adjoint()).equals(ComplexCalculator.crossProduct(adjoint(), this).equals(identity(size().getColumns())));
+        ComplexMatrix a = convertToInt(ComplexCalculator.crossProduct(this, adjoint()));
+        ComplexMatrix b = convertToInt(ComplexCalculator.crossProduct(adjoint(), this));
+        //System.out.println(a.equals(identity(size().getColumns())));
+        //System.out.println(b);
+        return a.equals(b) && a.equals(identity(size().getColumns()));
+    }
+
+    private ComplexMatrix convertToInt(ComplexMatrix complexMatrix) {
+        ComplexMatrix result = new ComplexMatrix();
+
+        for(int i = 0; i < complexMatrix.size().getRows(); i++){
+            result.add(new ComplexVector());
+            for(int j = 0; j < complexMatrix.size().getColumns(); j++){
+                Complex element = complexMatrix.get(i).get(j);
+                result.get(i).add(new Complex(Math.round(element.getA()), Math.round(element.getB())));
+            }
+        }
+
+        return result;
     }
 
     public static ComplexMatrix identity (int n){

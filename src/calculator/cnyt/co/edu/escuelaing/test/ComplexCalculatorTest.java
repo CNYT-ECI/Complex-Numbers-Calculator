@@ -25,6 +25,8 @@ class ComplexCalculatorTest {
 
     private ComplexMatrix z;
 
+    private ComplexMatrix matrixA;
+
 
     private ComplexVector x1;
     private ComplexVector y1;
@@ -46,6 +48,8 @@ class ComplexCalculatorTest {
         d = new Complex(-1, -1);
         vectorA = new ComplexVector(Arrays.asList(a, b));
         vectorB = new ComplexVector(Arrays.asList(c, d));
+
+        matrixA = new ComplexMatrix(Arrays.asList(vectorA, vectorB));
 
 
         c1 = new Complex(1, 2);
@@ -355,20 +359,47 @@ class ComplexCalculatorTest {
 
     @Test
     void itShouldGetTheVectorProductByScalar(){
-        
+        assertEquals(new ComplexVector(Arrays.asList(new Complex(-9,-40), new Complex(14, 3))), ComplexCalculator.productByScalar(a, vectorA));
     }
 
     @Test
-    void itShouldGetTheMatrixProductByScalar(){}
+    void itShouldGetTheMatrixProductByScalar() throws ComplexException {
+        assertEquals(new ComplexMatrix(Arrays.asList(new ComplexVector(Arrays.asList(new Complex(14, 3), new Complex(-3, 4))), new ComplexVector(Arrays.asList(new Complex(-1, 4), new Complex(1, -3))))), ComplexCalculator.productByScalar(b, matrixA));
+    }
 
     @Test
-    void itShouldntGetTheMatrixProductByScalarIfTheMatrixIsInvalid(){}
+    void itShouldntGetTheMatrixProductByScalarIfTheMatrixIsInvalid() {
+        Complex b = new Complex(4, 5);
+        Complex d = new Complex(1, 2);
+
+        Complex f = new Complex(2, 3);
+        ComplexVector x = new ComplexVector(Arrays.asList(b, d));
+        ComplexVector y = new ComplexVector(Arrays.asList(f));
+
+        try {
+            ComplexCalculator.productByScalar(b, new ComplexMatrix(Arrays.asList(x, y)));
+            fail(FAIL_MESSAGE);
+        } catch (ComplexException e) {
+            assertSame(e.getMessage(), ComplexException.INVALID_MATRIX);
+        }
+    }
 
     @Test
-    void itShouldGetTheNormOfAVector(){}
+    void itShouldGetTheNormOfAVector() throws ComplexException {
+        Complex f = new Complex(2, 3);
+        ComplexVector y = new ComplexVector(Arrays.asList(f));
+
+        assertEquals(new Complex(-5, 12, true), ComplexCalculator.vectorNorm(y));
+
+    }
 
     @Test
-    void itShouldGetTheDistanceBetweenTwoVectors(){}
+    void itShouldGetTheDistanceBetweenTwoVectors() throws ComplexException {
+        Complex f = new Complex(2, 3);
+        ComplexVector y = new ComplexVector(Arrays.asList(f));
+
+        assertEquals(new Complex(0, 0, true), ComplexCalculator.distance(y, y));
+    }
 
     @Test
     void itShouldGetTheTensorProductOfTwoMatrices(){}

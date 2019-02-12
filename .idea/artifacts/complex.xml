@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="complex">
+    <output-path>$PROJECT_DIR$/out/artifacts/complex</output-path>
+    <root id="archive" name="complex.jar">
+      <element id="module-output" name="Complex-Numbers-Calculator" />
+      <element id="library" level="module" name="JUnit5.0" module-name="Complex-Numbers-Calculator" />
+    </root>
+  </artifact>
+</component>
