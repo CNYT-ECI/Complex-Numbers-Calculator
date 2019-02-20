@@ -12,7 +12,7 @@ public class ComplexMatrix {
     private List<ComplexVector> elements;
 
     public ComplexMatrix() {
-        elements = new ArrayList<>();
+        elements = new ArrayList<ComplexVector>();
     }
 
     public ComplexMatrix(List<ComplexVector> elements) {

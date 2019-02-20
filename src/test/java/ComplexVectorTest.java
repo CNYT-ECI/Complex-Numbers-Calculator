@@ -1,4 +1,4 @@
-package calculator.cnyt.co.edu.escuelaing.test;
+package test.java;
 
 import calculator.cnyt.co.edu.escuelaing.entities.Complex;
 import calculator.cnyt.co.edu.escuelaing.entities.ComplexMatrix;

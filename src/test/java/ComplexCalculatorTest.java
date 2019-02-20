@@ -1,4 +1,4 @@
-package calculator.cnyt.co.edu.escuelaing.test;
+package test.java;
 
 import calculator.cnyt.co.edu.escuelaing.entities.Complex;
 import calculator.cnyt.co.edu.escuelaing.entities.ComplexMatrix;
@@ -364,7 +364,7 @@ class ComplexCalculatorTest {
 
     @Test
     void itShouldGetTheMatrixProductByScalar() throws ComplexException {
-        assertEquals(new ComplexMatrix(Arrays.asList(new ComplexVector(Arrays.asList(new Complex(14, 3), new Complex(-3, 4))), new ComplexVector(Arrays.asList(new Complex(-1, 4), new Complex(1, -3))))), ComplexCalculator.productByScalar(b, matrixA));
+        assertEquals(new ComplexMatrix(Arrays.asList(new ComplexVector(Arrays.asList(new Complex(14, 3), new Complex(-3, 4))), new ComplexVector(Arrays.asList(new Complex(7, 4), new Complex(1, -3))))), ComplexCalculator.productByScalar(b, matrixA));
     }
 
     @Test

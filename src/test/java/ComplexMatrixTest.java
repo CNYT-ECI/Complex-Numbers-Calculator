@@ -1,4 +1,4 @@
-package calculator.cnyt.co.edu.escuelaing.test;
+package test.java;
 
 import calculator.cnyt.co.edu.escuelaing.entities.Complex;
 import calculator.cnyt.co.edu.escuelaing.entities.ComplexMatrix;
@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class ComplexMatrixTest {
 
@@ -120,7 +121,7 @@ class ComplexMatrixTest {
 
     @Test
     void itShouldCalculateTheSizeOfItsElements() {
-        Assertions.assertEquals(new Size(2, 2), z.size());
+        assertEquals(new Size(2, 2), z.size());
     }
 
     @Test

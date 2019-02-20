@@ -9,7 +9,7 @@ public class ComplexVector {
     private List<Complex> elements;
 
     public ComplexVector(){
-        elements = new ArrayList<>();
+        elements = new ArrayList<Complex>();
     }
 
     public ComplexVector(List<Complex> elements) {

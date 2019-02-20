@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="test.java.ComplexVectorTest" time="0.002" tests="4" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\2110805\Documents\Complex-Numbers-Calculator\target\test-classes;C:\Users\2110805\Documents\Complex-Numbers-Calculator\target\classes;C:\Users\2110805\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.2.0\junit-jupiter-api-5.2.0.jar;C:\Users\2110805\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\2110805\.m2\repository\org\opentest4j\opentest4j\1.1.0\opentest4j-1.1.0.jar;C:\Users\2110805\.m2\repository\org\junit\platform\junit-platform-commons\1.2.0\junit-platform-commons-1.2.0.jar;C:\Users\2110805\.m2\repository\org\easytesting\fest-assert-core\2.0M10\fest-assert-core-2.0M10.jar;C:\Users\2110805\.m2\repository\org\easytesting\fest-util\1.2.5\fest-util-1.2.5.jar;C:\Users\2110805\.m2\repository\org\junit\platform\junit-platform-surefire-provider\1.2.0-M1\junit-platform-surefire-provider-1.2.0-M1.jar;C:\Users\2110805\.m2\repository\org\junit\platform\junit-platform-launcher\1.2.0-M1\junit-platform-launcher-1.2.0-M1.jar;C:\Users\2110805\.m2\repository\org\apache\maven\surefire\surefire-api\2.21.0\surefire-api-2.21.0.jar;C:\Users\2110805\.m2\repository\org\apache\maven\surefire\surefire-logger-api\2.21.0\surefire-logger-api-2.21.0.jar;C:\Users\2110805\.m2\repository\org\apache\maven\surefire\common-java5\2.21.0\common-java5-2.21.0.jar;C:\Users\2110805\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.2.0-M1\junit-jupiter-engine-5.2.0-M1.jar;C:\Users\2110805\.m2\repository\org\junit\platform\junit-platform-engine\1.2.0-M1\junit-platform-engine-1.2.0-M1.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_191\jre\bin"/>
+    <property name="sun.java.command" value="C:\Users\2110805\AppData\Local\Temp\surefire2312613973948284661\surefirebooter5567329102982699502.jar C:\Users\2110805\AppData\Local\Temp\surefire2312613973948284661 2019-02-20T09-34-01_510-jvmRun1 surefire7380091041486415091tmp surefire_02829237397646496319tmp"/>
+    <property name="surefire.test.class.path" value="C:\Users\2110805\Documents\Complex-Numbers-Calculator\target\test-classes;C:\Users\2110805\Documents\Complex-Numbers-Calculator\target\classes;C:\Users\2110805\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.2.0\junit-jupiter-api-5.2.0.jar;C:\Users\2110805\.m2\repository\org\apiguardian\apiguardian-api\1.0.0\apiguardian-api-1.0.0.jar;C:\Users\2110805\.m2\repository\org\opentest4j\opentest4j\1.1.0\opentest4j-1.1.0.jar;C:\Users\2110805\.m2\repository\org\junit\platform\junit-platform-commons\1.2.0\junit-platform-commons-1.2.0.jar;C:\Users\2110805\.m2\repository\org\easytesting\fest-assert-core\2.0M10\fest-assert-core-2.0M10.jar;C:\Users\2110805\.m2\repository\org\easytesting\fest-util\1.2.5\fest-util-1.2.5.jar;C:\Users\2110805\.m2\repository\org\junit\platform\junit-platform-surefire-provider\1.2.0-M1\junit-platform-surefire-provider-1.2.0-M1.jar;C:\Users\2110805\.m2\repository\org\junit\platform\junit-platform-launcher\1.2.0-M1\junit-platform-launcher-1.2.0-M1.jar;C:\Users\2110805\.m2\repository\org\apache\maven\surefire\surefire-api\2.21.0\surefire-api-2.21.0.jar;C:\Users\2110805\.m2\repository\org\apache\maven\surefire\surefire-logger-api\2.21.0\surefire-logger-api-2.21.0.jar;C:\Users\2110805\.m2\repository\org\apache\maven\surefire\common-java5\2.21.0\common-java5-2.21.0.jar;C:\Users\2110805\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.2.0-M1\junit-jupiter-engine-5.2.0-M1.jar;C:\Users\2110805\.m2\repository\org\junit\platform\junit-platform-engine\1.2.0-M1\junit-platform-engine-1.2.0-M1.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\2110805"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_191\jre"/>
+    <property name="basedir" value="C:\Users\2110805\Documents\Complex-Numbers-Calculator"/>
+    <property name="file.separator" value="\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\2110805\AppData\Local\Temp\surefire2312613973948284661\surefirebooter5567329102982699502.jar"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_191\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_191\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_191\jre\classes"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_191-b12"/>
+    <property name="user.name" value="2110805"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_191\jre\lib\endorsed"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\2110805\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\2110805\AppData\Local\Temp\"/>
+    <property name="java.version" value="1.8.0_191"/>
+    <property name="user.dir" value="C:\Users\2110805\Documents\Complex-Numbers-Calculator"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_191\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.6.3\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.6.3\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\PuTTY\;C:\Program Files (x86)\SqliteBrowser3\bin;C:\Program Files\Java\jre1.8.0_151\bin;C:\Program Files\Java\jdk1.8.0_151\bin;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Program Files (x86)\sqldeveloper2017\sqldeveloper\bin;C:\Program Files\Python36\Lib;C:\Program Files\Python36\Lib\idlelib;C:\Program Files (x86)\Wolfram Research\WolframScript\;C:\Users\rescate\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Heroku\bin;C:\Program Files (x86)\SSH Communications Security\SSH Secure Shell;C:\Program Files\apache-maven-3.6.0\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\vim\vim80;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\Haskell Platform\8.6.3\mingw\bin;C:\Users\2110805\AppData\Local\Microsoft\WindowsApps;;."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="25.191-b12"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_191\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="52.0"/>
+  </properties>
+  <testcase name="itShouldGetTheSizeOfAVector" classname="test.java.ComplexVectorTest" time="0"/>
+  <testcase name="itShouldGetTheConjugatedOfAVector" classname="test.java.ComplexVectorTest" time="0"/>
+  <testcase name="getTranspose" classname="test.java.ComplexVectorTest" time="0"/>
+  <testcase name="itShouldGetTheInverseOfAVector" classname="test.java.ComplexVectorTest" time="0"/>
+</testsuite>
