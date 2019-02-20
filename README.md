@@ -51,5 +51,5 @@ git clone https://github.com/CNYT-ECI/Complex-Numbers-Calculator
 - [Juan David Ramirez Mendoza](https://github.com/CAPJackie)
 
 ## License
-This project is licensed under [MIT license]{https://opensource.org/licenses/MIT}.
+This project is licensed under [MIT license](https://opensource.org/licenses/MIT).
 
