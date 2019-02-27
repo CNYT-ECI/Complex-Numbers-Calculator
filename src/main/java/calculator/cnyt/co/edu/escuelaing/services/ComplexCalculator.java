@@ -130,32 +130,19 @@ public class ComplexCalculator {
     }
 
     public static ComplexMatrix tensorProduct (ComplexMatrix first, ComplexMatrix second){
-        ComplexMatrix solution = new ComplexMatrix();
-        for(int i = 0; i < first.size().getRows() * second.size().getRows(); i++){
-            solution.add(new ComplexVector());
-            for(int j = 0; j < first.size().getColumns() * second.size().getColumns(); j++){
-                solution.get(i).add(new Complex());
-            }
-        }
-
-        System.out.println(solution);
-
-
+        ComplexMatrix solution = new ComplexMatrix(first.size().getRows() * second.size().getRows(), first.size().getColumns() * second.size().getColumns());
         for(int i = 0; i < first.size().getRows(); i++){
-            for(int k = 0; k < second.size().getRows(); k++){
-                for(int j = 0; j < first.size().getColumns(); j++){
-                    for(int m = 0; m < second.size().getColumns(); m++){
-                        System.out.println("Position: " + (i+m+1) + ", " + (j+k+1) + " Value: " + first.get(i).get(j) + " * " + second.get(k).get(m));
-                        Complex a = ComplexCalculator.product(first.get(i).get(j), second.get(k).get(m));
-                        solution.get(i+m+1).get(j+k+1).setA(a.getA());
-                        solution.get(i+m+1).get(j+k+1).setB(a.getB());
+            for(int j = 0; j < first.size().getColumns(); j++){
+                for(int k = 0; k < second.size().getRows(); k++){
+                    for(int l = 0; l < second.size().getColumns(); l++){
+                        solution.set(i * second.size().getRows() + k, j * second.size().getColumns() + l, ComplexCalculator.product(first.get(i).get(j), second.get(k).get(l)));
                     }
                 }
             }
         }
 
-        return solution;
     }
+
 
 
 }

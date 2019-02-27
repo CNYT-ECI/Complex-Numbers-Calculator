@@ -161,4 +161,8 @@ public class ComplexMatrix {
                 "elements=" + elements +
                 '}';
     }
+
+    public void set(int i, int j, Complex element) {
+        elements.get(i).setElement(j, element) ;
+    }
 }

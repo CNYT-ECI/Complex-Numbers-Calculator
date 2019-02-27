@@ -81,4 +81,8 @@ public class ComplexVector {
                 "elements=" + elements +
                 '}';
     }
+
+    public void setElement(int i, Complex element) {
+        elements.set(i, element);
+    }
 }
