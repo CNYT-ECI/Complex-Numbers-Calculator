@@ -16,6 +16,13 @@ public class ComplexVector {
         this.elements = elements;
     }
 
+    public ComplexVector(int elementsNumber){
+        elements = new ArrayList<>();
+        for(int i = 0; i < elementsNumber; i++){
+            elements.add(new Complex(0, 0));
+        }
+    }
+
     public List<Complex> getElements() {
         return elements;
     }

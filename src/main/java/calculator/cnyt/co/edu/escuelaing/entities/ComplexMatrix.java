@@ -12,11 +12,18 @@ public class ComplexMatrix {
     private List<ComplexVector> elements;
 
     public ComplexMatrix() {
-        elements = new ArrayList<ComplexVector>();
+        elements = new ArrayList<>();
     }
 
     public ComplexMatrix(List<ComplexVector> elements) {
         this.elements = elements;
+    }
+
+    public ComplexMatrix(int rows, int columns){
+        elements = new ArrayList<>();
+        for(int i = 0; i < rows; i++){
+            elements.add(new ComplexVector(columns));
+        }
     }
 
     public List<ComplexVector> getElements() {

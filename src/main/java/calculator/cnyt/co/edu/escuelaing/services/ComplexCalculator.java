@@ -129,7 +129,8 @@ public class ComplexCalculator {
         return new Complex(operation.getA(), operation.getB(), true);
     }
 
-    public static ComplexMatrix tensorProduct (ComplexMatrix first, ComplexMatrix second){
+    public static ComplexMatrix tensorProduct (ComplexMatrix first, ComplexMatrix second) throws ComplexException {
+        if(!first.isValid() || !second.isValid()) throw new ComplexException(ComplexException.INVALID_MATRIX);
         ComplexMatrix solution = new ComplexMatrix(first.size().getRows() * second.size().getRows(), first.size().getColumns() * second.size().getColumns());
         for(int i = 0; i < first.size().getRows(); i++){
             for(int j = 0; j < first.size().getColumns(); j++){
@@ -140,6 +141,7 @@ public class ComplexCalculator {
                 }
             }
         }
+        return solution;
 
     }
 

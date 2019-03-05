@@ -402,8 +402,81 @@ class ComplexCalculatorTest {
     }
 
     @Test
-    void itShouldGetTheTensorProductOfTwoMatrices(){}
+    void itShouldGetTheTensorProductOfTwoMatrices() throws ComplexException {
+        Complex a = new Complex (1,2);
+        Complex b = new Complex (2,3);
+        Complex c = new Complex (3,4);
+        Complex d = new Complex (5,6);
+
+        ComplexVector m1 = new ComplexVector(Arrays.asList(a,b));
+        ComplexVector m2 = new ComplexVector(Arrays.asList(c,d));
+
+        ComplexVector n1 = new ComplexVector(Arrays.asList(a,b));
+        ComplexVector n2 = new ComplexVector(Arrays.asList(c,d));
+
+        ComplexMatrix first = new ComplexMatrix(Arrays.asList(m1,m2));
+        ComplexMatrix second = new ComplexMatrix(Arrays.asList(n1,n2));
+
+
+        assertEquals(new ComplexMatrix(
+                Arrays.asList(
+                        new ComplexVector(
+                                Arrays.asList(
+                                        new Complex(-3, 4),
+                                        new Complex(-4, 7),
+                                        new Complex(-4, 7),
+                                        new Complex(-5, 12)
+                                )
+                        ),
+                        new ComplexVector(
+                                Arrays.asList(
+                                        new Complex(-5, 10),
+                                        new Complex(-7, 16),
+                                        new Complex(-6, 17),
+                                        new Complex(-8, 27)
+                                )
+                        ),
+                        new ComplexVector(
+                                Arrays.asList(
+                                        new Complex(-5, 10),
+                                        new Complex(-6, 17),
+                                        new Complex(-7, 16),
+                                        new Complex(-8, 27)
+                                )
+                        ),
+                        new ComplexVector(
+                                Arrays.asList(
+                                        new Complex(-7, 24),
+                                        new Complex(-9, 38),
+                                        new Complex(-9, 38),
+                                        new Complex(-11, 60)
+                                )
+                        ))), ComplexCalculator.tensorProduct(first,second));
+
+
+    }
 
     @Test
-    void itShouldntGetTheTensorProductOfInvalidMatrices(){}
+    void itShouldntGetTheTensorProductOfInvalidMatrices(){
+        Complex a = new Complex (1,2);
+        Complex b = new Complex (2,3);
+        Complex c = new Complex (3,4);
+        Complex d = new Complex (5,6);
+
+        ComplexVector m1 = new ComplexVector(Arrays.asList(b));
+        ComplexVector m2 = new ComplexVector(Arrays.asList(c,d));
+
+        ComplexVector n1 = new ComplexVector(Arrays.asList(a,b));
+        ComplexVector n2 = new ComplexVector(Arrays.asList(c,d));
+
+        ComplexMatrix first = new ComplexMatrix(Arrays.asList(m1,m2));
+        ComplexMatrix second = new ComplexMatrix(Arrays.asList(n1,n2));
+
+        try {
+            ComplexCalculator.tensorProduct(first,second);
+            fail(FAIL_MESSAGE);
+        } catch (ComplexException e) {
+            assertSame(e.getMessage(), ComplexException.INVALID_MATRIX);
+        }
+    }
 }
