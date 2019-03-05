@@ -310,7 +310,7 @@ class ComplexCalculatorTest {
     }
 
     @Test
-    void itShouldntCalculateTheCrossProductWhenTheOperationIsInvalid() throws  ComplexException{
+    void itShouldntCalculateTheCrossProductWhenTheOperationIsInvalid() throws ComplexException {
         Complex b = new Complex(4, 5);
         Complex d = new Complex(1, 2);
 
@@ -334,7 +334,7 @@ class ComplexCalculatorTest {
 
 
     @Test
-    void itShouldntCalculateTheCrossProductWhenTheMatricesAreInvalid() throws  ComplexException{
+    void itShouldntCalculateTheCrossProductWhenTheMatricesAreInvalid() throws ComplexException {
         Complex b = new Complex(4, 5);
         Complex d = new Complex(1, 2);
 
@@ -358,8 +358,8 @@ class ComplexCalculatorTest {
 
 
     @Test
-    void itShouldGetTheVectorProductByScalar(){
-        assertEquals(new ComplexVector(Arrays.asList(new Complex(-9,-40), new Complex(14, 3))), ComplexCalculator.productByScalar(a, vectorA));
+    void itShouldGetTheVectorProductByScalar() {
+        assertEquals(new ComplexVector(Arrays.asList(new Complex(-9, -40), new Complex(14, 3))), ComplexCalculator.productByScalar(a, vectorA));
     }
 
     @Test
@@ -403,19 +403,19 @@ class ComplexCalculatorTest {
 
     @Test
     void itShouldGetTheTensorProductOfTwoMatrices() throws ComplexException {
-        Complex a = new Complex (1,2);
-        Complex b = new Complex (2,3);
-        Complex c = new Complex (3,4);
-        Complex d = new Complex (5,6);
+        Complex a = new Complex(1, 2);
+        Complex b = new Complex(2, 3);
+        Complex c = new Complex(3, 4);
+        Complex d = new Complex(5, 6);
 
-        ComplexVector m1 = new ComplexVector(Arrays.asList(a,b));
-        ComplexVector m2 = new ComplexVector(Arrays.asList(c,d));
+        ComplexVector m1 = new ComplexVector(Arrays.asList(a, b));
+        ComplexVector m2 = new ComplexVector(Arrays.asList(c, d));
 
-        ComplexVector n1 = new ComplexVector(Arrays.asList(a,b));
-        ComplexVector n2 = new ComplexVector(Arrays.asList(c,d));
+        ComplexVector n1 = new ComplexVector(Arrays.asList(a, b));
+        ComplexVector n2 = new ComplexVector(Arrays.asList(c, d));
 
-        ComplexMatrix first = new ComplexMatrix(Arrays.asList(m1,m2));
-        ComplexMatrix second = new ComplexMatrix(Arrays.asList(n1,n2));
+        ComplexMatrix first = new ComplexMatrix(Arrays.asList(m1, m2));
+        ComplexMatrix second = new ComplexMatrix(Arrays.asList(n1, n2));
 
 
         assertEquals(new ComplexMatrix(
@@ -451,32 +451,114 @@ class ComplexCalculatorTest {
                                         new Complex(-9, 38),
                                         new Complex(-11, 60)
                                 )
-                        ))), ComplexCalculator.tensorProduct(first,second));
+                        ))), ComplexCalculator.tensorProduct(first, second));
 
 
     }
 
     @Test
-    void itShouldntGetTheTensorProductOfInvalidMatrices(){
-        Complex a = new Complex (1,2);
-        Complex b = new Complex (2,3);
-        Complex c = new Complex (3,4);
-        Complex d = new Complex (5,6);
+    void itShouldntGetTheTensorProductOfInvalidMatrices() {
+        Complex a = new Complex(1, 2);
+        Complex b = new Complex(2, 3);
+        Complex c = new Complex(3, 4);
+        Complex d = new Complex(5, 6);
 
         ComplexVector m1 = new ComplexVector(Arrays.asList(b));
-        ComplexVector m2 = new ComplexVector(Arrays.asList(c,d));
+        ComplexVector m2 = new ComplexVector(Arrays.asList(c, d));
 
-        ComplexVector n1 = new ComplexVector(Arrays.asList(a,b));
-        ComplexVector n2 = new ComplexVector(Arrays.asList(c,d));
+        ComplexVector n1 = new ComplexVector(Arrays.asList(a, b));
+        ComplexVector n2 = new ComplexVector(Arrays.asList(c, d));
 
-        ComplexMatrix first = new ComplexMatrix(Arrays.asList(m1,m2));
-        ComplexMatrix second = new ComplexMatrix(Arrays.asList(n1,n2));
+        ComplexMatrix first = new ComplexMatrix(Arrays.asList(m1, m2));
+        ComplexMatrix second = new ComplexMatrix(Arrays.asList(n1, n2));
 
         try {
-            ComplexCalculator.tensorProduct(first,second);
+            ComplexCalculator.tensorProduct(first, second);
             fail(FAIL_MESSAGE);
         } catch (ComplexException e) {
             assertSame(e.getMessage(), ComplexException.INVALID_MATRIX);
         }
+    }
+
+
+    @Test
+    void marbleExperiment() throws ComplexException {
+        Complex zero = new Complex(0, 0);
+        Complex one = new Complex(1, 0);
+
+        ComplexVector a1 = new ComplexVector(Arrays.asList(zero, zero, zero, zero, zero, zero));
+        ComplexVector a2 = new ComplexVector(Arrays.asList(zero, zero, zero, zero, zero, zero));
+        ComplexVector a3 = new ComplexVector(Arrays.asList(zero, one, zero, zero, zero, one));
+        ComplexVector a4 = new ComplexVector(Arrays.asList(zero, zero, zero, one, zero, zero));
+        ComplexVector a5 = new ComplexVector(Arrays.asList(zero, zero, one, zero, zero, zero));
+        ComplexVector a6 = new ComplexVector(Arrays.asList(one, zero, zero, zero, one, zero));
+
+        ComplexMatrix marblesMovementModel = new ComplexMatrix(Arrays.asList(a1, a2, a3, a4, a5, a6));
+
+        Complex b11 = new Complex(1, 2);
+        Complex b21 = new Complex(2, 3);
+        Complex b31 = new Complex(3, 4);
+        Complex b41 = new Complex(4, 5);
+        Complex b51 = new Complex(5, 6);
+        Complex b61 = new Complex(6, 7);
+
+        ComplexMatrix initialState = new ComplexMatrix(
+                Arrays.asList(
+                        new ComplexVector(Collections.singletonList(b11)),
+                        new ComplexVector(Collections.singletonList(b21)),
+                        new ComplexVector(Collections.singletonList(b31)),
+                        new ComplexVector(Collections.singletonList(b41)),
+                        new ComplexVector(Collections.singletonList(b51)),
+                        new ComplexVector(Collections.singletonList(b61))
+                )
+        );
+
+        // 3 clicks Experiment
+
+        // 1 click
+        ComplexMatrix firstClickState = ComplexCalculator.crossProduct(marblesMovementModel, initialState);
+        assertEquals(new ComplexMatrix(
+                        Arrays.asList(
+                                new ComplexVector(Collections.singletonList(zero)),
+                                new ComplexVector(Collections.singletonList(zero)),
+                                new ComplexVector(Collections.singletonList(new Complex(8, 10))),
+                                new ComplexVector(Collections.singletonList(new Complex(4, 5))),
+                                new ComplexVector(Collections.singletonList(new Complex(3, 4))),
+                                new ComplexVector(Collections.singletonList(new Complex(6, 8)))
+                        )
+                ),
+                firstClickState);
+
+
+        //2 click
+        ComplexMatrix secondClickState = ComplexCalculator.crossProduct(marblesMovementModel, firstClickState);
+        assertEquals(new ComplexMatrix(
+                        Arrays.asList(
+                                new ComplexVector(Collections.singletonList(zero)),
+                                new ComplexVector(Collections.singletonList(zero)),
+                                new ComplexVector(Collections.singletonList(new Complex(6, 8))),
+                                new ComplexVector(Collections.singletonList(new Complex(4, 5))),
+                                new ComplexVector(Collections.singletonList(new Complex(8, 10))),
+                                new ComplexVector(Collections.singletonList(new Complex(3, 4)))
+                        )
+                ),
+                secondClickState);
+
+
+
+        //3 click
+        ComplexMatrix thirdClickState = ComplexCalculator.crossProduct(marblesMovementModel, secondClickState);
+        assertEquals(new ComplexMatrix(
+                        Arrays.asList(
+                                new ComplexVector(Collections.singletonList(zero)),
+                                new ComplexVector(Collections.singletonList(zero)),
+                                new ComplexVector(Collections.singletonList(new Complex(3, 4))),
+                                new ComplexVector(Collections.singletonList(new Complex(4, 5))),
+                                new ComplexVector(Collections.singletonList(new Complex(6, 8))),
+                                new ComplexVector(Collections.singletonList(new Complex(8, 10)))
+                        )
+                ),
+                thirdClickState);
+
     }
 }
