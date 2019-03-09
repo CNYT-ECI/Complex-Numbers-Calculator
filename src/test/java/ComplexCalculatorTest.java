@@ -545,7 +545,6 @@ class ComplexCalculatorTest {
                 secondClickState);
 
 
-
         //3 click
         ComplexMatrix thirdClickState = ComplexCalculator.crossProduct(marblesMovementModel, secondClickState);
         assertEquals(new ComplexMatrix(
@@ -560,5 +559,157 @@ class ComplexCalculatorTest {
                 ),
                 thirdClickState);
 
+    }
+
+
+    @Test
+    void FractionsMarbleExperiment() throws ComplexException {
+
+        //B Matrix (State change model Matrix)
+        ComplexMatrix stateChangeModel = new ComplexMatrix(11, 11);
+        stateChangeModel.get(1).setElement(0, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(2).setElement(0, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(3).setElement(0, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(4).setElement(1, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(4).setElement(4, new Complex(1, 0));
+        stateChangeModel.get(5).setElement(1, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(5).setElement(5, new Complex(1, 0));
+        stateChangeModel.get(6).setElement(1, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(6).setElement(2, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(6).setElement(6, new Complex(1, 0));
+        stateChangeModel.get(7).setElement(2, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(7).setElement(7, new Complex(1, 0));
+        stateChangeModel.get(8).setElement(2, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(8).setElement(3, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(8).setElement(8, new Complex(1, 0));
+        stateChangeModel.get(9).setElement(3, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(9).setElement(9, new Complex(1, 0));
+        stateChangeModel.get(10).setElement(3, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(10).setElement(10, new Complex(1, 0));
+
+
+        //Calculate B * B
+        ComplexMatrix secondStateChangeModel = ComplexCalculator.crossProduct(stateChangeModel, stateChangeModel);
+        ComplexMatrix expectedMatrix = new ComplexMatrix(11, 11);
+        expectedMatrix.get(4).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(4).setElement(1, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(4).setElement(4, new Complex(1, 0));
+        expectedMatrix.get(5).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(5).setElement(1, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(5).setElement(5, new Complex(1, 0));
+        expectedMatrix.get(6).setElement(0, new Complex(0.2222222222222222, 0));
+        expectedMatrix.get(6).setElement(1, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(6).setElement(2, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(6).setElement(6, new Complex(1, 0));
+        expectedMatrix.get(7).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(7).setElement(2, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(7).setElement(7, new Complex(1, 0));
+        expectedMatrix.get(8).setElement(0, new Complex(0.2222222222222222, 0));
+        expectedMatrix.get(8).setElement(2, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(8).setElement(3, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(8).setElement(8, new Complex(1, 0));
+        expectedMatrix.get(9).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(9).setElement(3, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(9).setElement(9, new Complex(1, 0));
+        expectedMatrix.get(10).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(10).setElement(3, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(10).setElement(10, new Complex(1, 0));
+
+        assertEquals(expectedMatrix, secondStateChangeModel);
+
+
+        //Initial state vector
+        ComplexMatrix initialState = new ComplexMatrix(11, 1);
+        initialState.get(0).setElement(0, new Complex(1, 0));
+
+
+        //Calculate bullets state after two clicks
+        ComplexMatrix secondClickState = ComplexCalculator.crossProduct(secondStateChangeModel, initialState);
+
+        ComplexMatrix expectedSecondClickState = new ComplexMatrix(11, 1);
+        expectedSecondClickState.get(4).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedSecondClickState.get(5).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedSecondClickState.get(6).setElement(0, new Complex(0.2222222222222222, 0));
+        expectedSecondClickState.get(7).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedSecondClickState.get(8).setElement(0, new Complex(0.2222222222222222, 0));
+        expectedSecondClickState.get(9).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedSecondClickState.get(10).setElement(0, new Complex(0.1111111111111111, 0));
+
+        assertEquals(expectedSecondClickState, secondClickState);
+    }
+
+    @Test
+    void ComplexMarbleExperiment(){
+        /*//P Matrix (State change model Matrix)
+        ComplexMatrix stateChangeModel = new ComplexMatrix(11, 11);
+        stateChangeModel.get(1).setElement(0, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(2).setElement(0, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(3).setElement(0, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(4).setElement(1, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(4).setElement(4, new Complex(1, 0));
+        stateChangeModel.get(5).setElement(1, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(5).setElement(5, new Complex(1, 0));
+        stateChangeModel.get(6).setElement(1, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(6).setElement(2, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(6).setElement(6, new Complex(1, 0));
+        stateChangeModel.get(7).setElement(2, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(7).setElement(7, new Complex(1, 0));
+        stateChangeModel.get(8).setElement(2, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(8).setElement(3, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(8).setElement(8, new Complex(1, 0));
+        stateChangeModel.get(9).setElement(3, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(9).setElement(9, new Complex(1, 0));
+        stateChangeModel.get(10).setElement(3, new Complex(1.0 / 3.0, 0));
+        stateChangeModel.get(10).setElement(10, new Complex(1, 0));
+
+
+        //Calculate B * B
+        ComplexMatrix secondStateChangeModel = ComplexCalculator.crossProduct(stateChangeModel, stateChangeModel);
+        ComplexMatrix expectedMatrix = new ComplexMatrix(11, 11);
+        expectedMatrix.get(4).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(4).setElement(1, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(4).setElement(4, new Complex(1, 0));
+        expectedMatrix.get(5).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(5).setElement(1, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(5).setElement(5, new Complex(1, 0));
+        expectedMatrix.get(6).setElement(0, new Complex(0.2222222222222222, 0));
+        expectedMatrix.get(6).setElement(1, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(6).setElement(2, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(6).setElement(6, new Complex(1, 0));
+        expectedMatrix.get(7).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(7).setElement(2, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(7).setElement(7, new Complex(1, 0));
+        expectedMatrix.get(8).setElement(0, new Complex(0.2222222222222222, 0));
+        expectedMatrix.get(8).setElement(2, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(8).setElement(3, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(8).setElement(8, new Complex(1, 0));
+        expectedMatrix.get(9).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(9).setElement(3, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(9).setElement(9, new Complex(1, 0));
+        expectedMatrix.get(10).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedMatrix.get(10).setElement(3, new Complex(0.3333333333333333, 0));
+        expectedMatrix.get(10).setElement(10, new Complex(1, 0));
+
+        assertEquals(expectedMatrix, secondStateChangeModel);
+
+
+        //Initial state vector
+        ComplexMatrix initialState = new ComplexMatrix(11, 1);
+        initialState.get(0).setElement(0, new Complex(1, 0));
+
+
+        //Calculate bullets state after two clicks
+        ComplexMatrix secondClickState = ComplexCalculator.crossProduct(secondStateChangeModel, initialState);
+
+        ComplexMatrix expectedSecondClickState = new ComplexMatrix(11, 1);
+        expectedSecondClickState.get(4).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedSecondClickState.get(5).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedSecondClickState.get(6).setElement(0, new Complex(0.2222222222222222, 0));
+        expectedSecondClickState.get(7).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedSecondClickState.get(8).setElement(0, new Complex(0.2222222222222222, 0));
+        expectedSecondClickState.get(9).setElement(0, new Complex(0.1111111111111111, 0));
+        expectedSecondClickState.get(10).setElement(0, new Complex(0.1111111111111111, 0));
+
+        assertEquals(expectedSecondClickState, secondClickState);*/
     }
 }
