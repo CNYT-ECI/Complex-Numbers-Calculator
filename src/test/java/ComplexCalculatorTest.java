@@ -712,4 +712,45 @@ class ComplexCalculatorTest {
 
         assertEquals(expectedSecondClickState, secondClickState);*/
     }
+
+    @Test
+    void itShouldFindAPointLikelihood (){
+        ComplexVector ket = new ComplexVector(Arrays.asList(
+                new Complex(2, -1),
+                new Complex(0, 2),
+                new Complex(1, -1),
+                new Complex(1, 0),
+                new Complex(0, -2),
+                new Complex(2, 0)
+        ));
+
+        assertEquals(0.05, ComplexCalculator.findingPointLikelihood(3, ket));
+    }
+
+    @Test
+    void itShouldCalculateTheTransitionAmplitude() throws ComplexException {
+
+        double number = Math.sqrt(2) / 2.0;
+
+        ComplexVector firstKet = new ComplexVector(
+                Arrays.asList(
+                        new Complex(number, 0),
+                        new Complex(0, number)
+                )
+        );
+
+        ComplexVector secondKet = new ComplexVector(
+                Arrays.asList(
+                        new Complex(0, number),
+                        new Complex(-1 * number, 0)
+                )
+        );
+
+        Complex resultComplex = ComplexCalculator.transitionAmplitude(firstKet, secondKet);
+        Complex roundedResult = new Complex(Math.round(resultComplex.getA()), Math.round(resultComplex.getB()));
+        assertEquals(new Complex(0, -1), roundedResult);
+    }
+
+
+
 }

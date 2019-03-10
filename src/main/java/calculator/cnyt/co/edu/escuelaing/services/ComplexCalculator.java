@@ -7,6 +7,7 @@ import calculator.cnyt.co.edu.escuelaing.entities.Size;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ComplexCalculator {
 
@@ -142,6 +143,32 @@ public class ComplexCalculator {
             }
         }
         return solution;
+
+    }
+
+    public static double findingPointLikelihood (int index, ComplexVector amplitudes){
+        Complex point = amplitudes.get(index);
+        double length = Math.pow(point.getA(), 2) + Math.pow(point.getB(), 2);
+
+
+        double amplitudesLength = 0.0;
+
+        for(Complex c: amplitudes.getElements()){
+            amplitudesLength += Math.pow(c.getA(), 2) + Math.pow(c.getB(), 2);
+        }
+
+
+        return length / amplitudesLength;
+
+    }
+
+    public static Complex transitionAmplitude (ComplexVector firstKet, ComplexVector secondKet) throws ComplexException {
+
+        ComplexVector conjugates = new ComplexVector();
+        for(Complex c: secondKet.getElements()){
+            conjugates.add(c.getConjugated());
+        }
+        return ComplexCalculator.innerProduct(conjugates, firstKet);
 
     }
 
