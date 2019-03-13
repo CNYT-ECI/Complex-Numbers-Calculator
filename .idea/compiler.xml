@@ -9,8 +9,5 @@
         <module name="Complex-Numbers-Calculator" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Complex-Numbers-Calculator" target="7" />
-    </bytecodeTargetLevel>
   </component>
 </project>

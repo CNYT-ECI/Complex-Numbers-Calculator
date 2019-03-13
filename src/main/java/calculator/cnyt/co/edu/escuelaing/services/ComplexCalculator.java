@@ -171,7 +171,4 @@ public class ComplexCalculator {
         return ComplexCalculator.innerProduct(conjugates, firstKet);
 
     }
-
-
-
 }
