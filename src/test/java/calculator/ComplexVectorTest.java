@@ -1,4 +1,4 @@
-package test.java;
+package calculator;
 
 import calculator.cnyt.co.edu.escuelaing.entities.Complex;
 import calculator.cnyt.co.edu.escuelaing.entities.ComplexMatrix;
@@ -14,23 +14,24 @@ public class ComplexVectorTest {
 
     ComplexVector v;
 
-    public ComplexVectorTest(){
-        v = new ComplexVector(Arrays.asList(new Complex(1, 2),new Complex(3, 4)));
+    public ComplexVectorTest() {
+        v = new ComplexVector(Arrays.asList(new Complex(1, 2), new Complex(3, 4)));
     }
 
     @Test
     void itShouldGetTheConjugatedOfAVector() {
-        assertEquals(new ComplexVector(Arrays.asList(new Complex(1, -2),new Complex(3, -4))), v.getConjugated());
+        assertEquals(new ComplexVector(Arrays.asList(new Complex(1, -2), new Complex(3, -4))), v.getConjugated());
     }
 
     @Test
     void getTranspose() {
-        assertEquals(new ComplexMatrix(Arrays.asList(new ComplexVector(Arrays.asList(new Complex(1,2))), new ComplexVector(Arrays.asList(new Complex(3, 4))))), v.getTranspose());
+        assertEquals(new ComplexMatrix(Arrays.asList(new ComplexVector(Arrays.asList(new Complex(1, 2))),
+                new ComplexVector(Arrays.asList(new Complex(3, 4))))), v.getTranspose());
     }
 
     @Test
     void itShouldGetTheInverseOfAVector() {
-        assertEquals(new ComplexVector(Arrays.asList(new Complex(-1, -2),new Complex(-3, -4))), v.getInverse());
+        assertEquals(new ComplexVector(Arrays.asList(new Complex(-1, -2), new Complex(-3, -4))), v.getInverse());
     }
 
     @Test

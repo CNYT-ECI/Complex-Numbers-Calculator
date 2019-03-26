@@ -19,9 +19,9 @@ public class ComplexMatrix {
         this.elements = elements;
     }
 
-    public ComplexMatrix(int rows, int columns){
+    public ComplexMatrix(int rows, int columns) {
         elements = new ArrayList<>();
-        for(int i = 0; i < rows; i++){
+        for (int i = 0; i < rows; i++) {
             elements.add(new ComplexVector(columns));
         }
     }
@@ -67,15 +67,16 @@ public class ComplexMatrix {
         return isValid;
     }
 
-
     public ComplexMatrix adjoint() {
         return getConjugated().getTranspose();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         ComplexMatrix that = (ComplexMatrix) o;
         return Objects.equals(elements, that.elements);
     }
@@ -119,24 +120,24 @@ public class ComplexMatrix {
         return inverse;
     }
 
-    public boolean isHermitian(){
+    public boolean isHermitian() {
         return convertToInt(this).equals(convertToInt(this.adjoint()));
     }
 
     public boolean isUnitary() throws ComplexException {
         ComplexMatrix a = convertToInt(ComplexCalculator.crossProduct(this, adjoint()));
         ComplexMatrix b = convertToInt(ComplexCalculator.crossProduct(adjoint(), this));
-        //System.out.println(a.equals(identity(size().getColumns())));
-        //System.out.println(b);
+        // System.out.println(a.equals(identity(size().getColumns())));
+        // System.out.println(b);
         return a.equals(b) && a.equals(identity(size().getColumns()));
     }
 
     private ComplexMatrix convertToInt(ComplexMatrix complexMatrix) {
         ComplexMatrix result = new ComplexMatrix();
 
-        for(int i = 0; i < complexMatrix.size().getRows(); i++){
+        for (int i = 0; i < complexMatrix.size().getRows(); i++) {
             result.add(new ComplexVector());
-            for(int j = 0; j < complexMatrix.size().getColumns(); j++){
+            for (int j = 0; j < complexMatrix.size().getColumns(); j++) {
                 Complex element = complexMatrix.get(i).get(j);
                 result.get(i).add(new Complex(Math.round(element.getA()), Math.round(element.getB())));
             }
@@ -145,14 +146,14 @@ public class ComplexMatrix {
         return result;
     }
 
-    public static ComplexMatrix identity (int n){
+    public static ComplexMatrix identity(int n) {
         ComplexMatrix result = new ComplexMatrix();
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             result.add(new ComplexVector());
-            for(int j = 0; j < n; j++){
-                if(i == j){
+            for (int j = 0; j < n; j++) {
+                if (i == j) {
                     result.get(i).add(new Complex(1, 0));
-                } else{
+                } else {
                     result.get(i).add(new Complex(0, 0));
                 }
 
@@ -161,15 +162,22 @@ public class ComplexMatrix {
         return result;
     }
 
-
     @Override
     public String toString() {
-        return "ComplexMatrix{" +
-                "elements=" + elements +
-                '}';
+        return "ComplexMatrix{" + "elements=" + elements + '}';
     }
 
     public void set(int i, int j, Complex element) {
-        elements.get(i).setElement(j, element) ;
+        elements.get(i).setElement(j, element);
+    }
+
+    public static ComplexVector toVector(ComplexMatrix matrix) {
+        ComplexVector vector = new ComplexVector();
+        for (int i = 0; i < matrix.size().getRows(); i++) {
+            vector.add(matrix.get(i).get(0));
+        }
+
+        return vector;
+
     }
 }
