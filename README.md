@@ -54,11 +54,11 @@ git clone https://github.com/CNYT-ECI/Complex-Numbers-Calculator
 This project is licensed under [MIT license](https://opensource.org/licenses/MIT).
 
 ## Todo
-- [ ] Marble Experiment
-- [ ] Double slit experiment (bullets)
-- [ ] Young double slit experiment
-- [ ] Point Likelihood
-- [ ] Transition Amplitude
+- [x] Marble Experiment
+- [x] Double slit experiment (bullets)
+- [x] Young double slit experiment
+- [x] Point Likelihood
+- [x] Transition Amplitude
 - [ ] Circle CI deploymnt
 - [ ] Implement observables programming drill
 - [ ] Take Photos and document the double slit experiment
