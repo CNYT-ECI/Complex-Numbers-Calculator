@@ -191,12 +191,11 @@ public class ComplexCalculator {
         ComplexMatrix product = ComplexCalculator.crossProduct(observable, ket);
 
         ComplexVector vectorizedProduct = ComplexMatrix.toVector(product);
-        
+
         ComplexVector conjugatedVectorizedProduct = vectorizedProduct.getConjugated();
         ComplexVector vectorizedKet = ComplexMatrix.toVector(ket);
 
-
-        return ComplexCalculator.innerProduct(conjugatedVectorizedProduct, vectorizedKet)
+        return ComplexCalculator.innerProduct(conjugatedVectorizedProduct, vectorizedKet);
 
     }
 
