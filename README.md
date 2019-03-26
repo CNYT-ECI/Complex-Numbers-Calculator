@@ -59,7 +59,7 @@ This project is licensed under [MIT license](https://opensource.org/licenses/MIT
 - [x] Young double slit experiment
 - [x] Point Likelihood
 - [x] Transition Amplitude
-- [ ] Circle CI deploymnt
-- [ ] Implement observables programming drill
+- [ ] Circle CI deployment
+- [x] Implement observables programming drill
 - [ ] Take Photos and document the double slit experiment
 
