@@ -604,4 +604,41 @@ class ComplexCalculatorTest {
         assertEquals(new Complex(0, -1), roundedResult);
     }
 
+
+    @Test
+    void itShouldCalculateTheMeanValue() throws ComplexException{
+        ComplexMatrix ket = new ComplexMatrix(2, 1);
+
+        ket.get(0).setElement(0, new Complex(Math.sqrt(2) / 2, 0));
+        ket.get(1).setElement(0, new Complex(0, Math.sqrt(2) / 2));
+
+        ComplexMatrix observable = new ComplexMatrix(2,2);
+
+        observable.get(0).setElement(0, new Complex(1, 0));
+        observable.get(0).setElement(1, new Complex(0, -1));
+        observable.get(1).setElement(0, new Complex(0, 1));
+        observable.get(1).setElement(1, new Complex(2, 0));
+
+
+        assertEquals(new Complex(2.5000000000000004, 0), ComplexCalculator.meanValue(observable, ket));
+    }
+
+    @Test
+    void itShouldCalculateTheVariance() throws ComplexException{
+        ComplexMatrix ket = new ComplexMatrix(2, 1);
+
+        ket.get(0).setElement(0, new Complex(Math.sqrt(2) / 2, 0));
+        ket.get(1).setElement(0, new Complex(0, Math.sqrt(2) / 2));
+
+        ComplexMatrix observable = new ComplexMatrix(2,2);
+
+        observable.get(0).setElement(0, new Complex(1, 0));
+        observable.get(0).setElement(1, new Complex(0, -1));
+        observable.get(1).setElement(0, new Complex(0, 1));
+        observable.get(1).setElement(1, new Complex(2, 0));
+
+
+        assertEquals(new Complex(0.25, 0), ComplexCalculator.variance(observable,ket));
+    }
+
 }
